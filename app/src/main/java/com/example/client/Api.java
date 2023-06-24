@@ -8,23 +8,23 @@ import retrofit2.http.Query;
 
 public interface Api {
     @GET("/set/field")
-    Call<List<Card>> getDeck(String token);
+    Call<List<Card>> getDeck(@Query("accessToken") String token);
 
     @GET("/set/pick")
-    Call<Void> pickCards(String token, int[] cards);
+    Call<Void> pickCards(@Query("accessToken") String token, @Query("cards") int[] cards);
 
     @GET("/set/scores")
-    Call<Void> getScores(String token);
+    Call<Void> getScores(@Query("accessToken") String token);
 
     //maybe post
     @GET("/user/register")
-    Call<Void> registerUser(String nick,String pass);
+    Call<Void> registerUser(@Query("nickname") String nick,@Query("password") String pass);
 
     @GET("/set/room/enter")
-    Call<Void> enterRoom(String token,int gameId);
+    Call<Void> enterRoom(@Query("accessToken") String token, @Query("gameId") int gameId);
 
     @GET("/set/add")
-    Call<Void> addCards(String token);
+    Call<Void> addCards(@Query("accessToken") String token);
 
 
 //todo replace voids, add queries
