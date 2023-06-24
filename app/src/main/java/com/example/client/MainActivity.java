@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         api = retrofit.create(Api.class);
         // hello
+        //привет
     }
 
 }
