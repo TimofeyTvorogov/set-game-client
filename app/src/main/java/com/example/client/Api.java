@@ -28,6 +28,6 @@ public interface Api {
 
 
 //todo replace voids, add queries
-
+//dodelati
 
 }
