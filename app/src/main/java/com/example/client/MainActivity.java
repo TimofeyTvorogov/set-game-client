@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         api = retrofit.create(Api.class);
 
+
         // Фрагмент входа
         btn_FrLog = findViewById(R.id.btn_Log);
         constraintLayout = findViewById(R.id.constraint_layout);
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         LogFragment logFragment = new LogFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.constraint_layout, logFragment);
+
     }
 
 }
