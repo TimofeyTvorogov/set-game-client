@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(Api.class);
-        // hello
-        //привет
+
     }
 
 }
