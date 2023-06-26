@@ -2,10 +2,10 @@ package com.example.client;
 
 public class Card {
     private int id,
-        color,
-        shape,
-        fill,
-        count;
+                color,
+                shape,
+                fill,
+                count;
 
     public Card(int id, int color, int shape, int fill, int count) {
         this.id = id;
