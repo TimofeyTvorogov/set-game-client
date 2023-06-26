@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setAdapter() {
         recyclerAdapter adapter = new recyclerAdapter(cardList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),4);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerView.setAdapter(adapter);
@@ -71,7 +72,15 @@ public class MainActivity extends AppCompatActivity {
         cardList.add(new Card(1,1,1,1,1));
         cardList.add(new Card(1,1,1,1,1));
         cardList.add(new Card(1,1,1,1,1));
-
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,1,1,1,1));
     }
 
     /*private void setLogFragment() {
