@@ -65,36 +65,4 @@
         android:id="@+id/scoreUser2"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/scoreUser1"
-        android:textSize="22sp"
-        android:textColor="@color/white"
-        android:text="@string/is_not_set"
-        android:gravity="center_horizontal"
-        android:id="@+id/checkCombo"
-        android:layout_marginTop="8dp"/>
-
-    <Button
-        android:layout_marginTop="15dp"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/checkCombo"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="15dp"
-        android:text="@string/pick_card"
-        android:id="@+id/pickCard"/>
-
-    <Button
-        android:layout_marginTop="15dp"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/checkCombo"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="17dp"
-        android:id="@+id/addCards"
-        android:text="@string/add_cards"
-        android:layout_marginEnd="150dp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
