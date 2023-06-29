@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment {
 
         binding.login.setOnClickListener(view -> {
             startActivity(new Intent(getContext(), MainActivity.class));
-            //Todo Вот сюда Тимофей
+            //Todo Вот сюда Тимофей fsdkf
         });
 
         return binding.getRoot();
