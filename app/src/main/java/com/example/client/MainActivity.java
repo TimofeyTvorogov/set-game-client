@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
@@ -29,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Card> cardList;
-    private String login, password;
+    private CountDownTimer countDownTimer;
     private recyclerAdapter adapter;
     private ArrayList<String> picked_cards;
     private recyclerAdapter.RecyclerViewClickListener clickListener;
@@ -37,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String address = "http://84.201.155.174";
     private Retrofit retrofit;
     private Api api;
-    private Button btn_FrLog;
-    private ConstraintLayout constraintLayout;
-    //change
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -54,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                login = extras.getString("Login");
-                password = extras.getString("Password");
+                String login = extras.getString("Login");
+                String password = extras.getString("Password");
             }
         }
 
@@ -91,16 +89,17 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 3; i++) {
                     set[i] = Integer.parseInt(picked_cards.get(i)) ;
                 }
-                picked_cards.clear();
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException ignored) {}
                 for (int i = 0; i < 12; i++) {
                     cardList.get(i).setPicked(false);
+                    picked_cards.clear();
                 }
-
                 is_set(set);
-
             }
-            //Todo latency before clearing
             adapter.notifyDataSetChanged();
+            //Todo latency before clearing
         };
     }
 
