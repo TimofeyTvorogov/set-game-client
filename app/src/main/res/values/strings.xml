@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="log_in">Войти</string>
+    <string name="is_set">Верно! +1</string>
+    <string name="is_not_set">Это не сет!</string>
+    <string name="add_cards">+ 3 карты</string>
+    <string name="pick_card">Выбрать карты</string>
 </resources>
