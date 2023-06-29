@@ -29,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Card> cardList;
+    private String login, password;
     private recyclerAdapter adapter;
     private ArrayList<String> picked_cards;
     private recyclerAdapter.RecyclerViewClickListener clickListener;
@@ -50,11 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         api = retrofit.create(Api.class);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                login = extras.getString("Login");
+                password = extras.getString("Password");
+            }
+        }
 
-        // Фрагмент входа
-        /*btn_FrLog = findViewById(R.id.btn_Log);
-
-        setLogFragment();*/
 
         cardList = new ArrayList<>();
         picked_cards = new ArrayList<>();
@@ -65,13 +69,6 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerView.setAdapter(adapter);
-
-        /*btn_FrLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setLogFragment();
-            }
-        });*/
     }
     @SuppressLint("NotifyDataSetChanged")
     private void setOnClickListener() {
