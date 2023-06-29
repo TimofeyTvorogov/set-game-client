@@ -4,14 +4,15 @@
     android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
+    android:id="@+id/card"
     android:background="@color/white">
 
 
     <ImageView
         android:id="@+id/fig1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/fig2outlined_green"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
+        android:src="@drawable/rhomb_empty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/fig2"
@@ -20,9 +21,9 @@
 
     <ImageView
         android:id="@+id/fig2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/fig2outlined_green"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
+        android:src="@drawable/rhomb_full"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,9 +34,9 @@
 
     <ImageView
         android:id="@+id/fig3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/fig2outlined_green"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
+        android:src="@drawable/rhomb_blured"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fig2"

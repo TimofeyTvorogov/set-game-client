@@ -77,22 +77,27 @@ public class MainActivity extends AppCompatActivity {
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             VibrationEffect effect = VibrationEffect.createOneShot(25, VibrationEffect.DEFAULT_AMPLITUDE);
             vibrator.vibrate(effect);
-            cardList.get(position).setPicked(!cardList.get(position).isPicked());
+            if (cardList.get(position).isPicked()){
+                cardList.get(position).setPicked(false);
+            }
+            else{
+                cardList.get(position).setPicked(true);
+            }
         };
     }
     //TODO patterns for vibration
     private void setCardInfo() {
         cardList.add(new Card(1,1,1,1,1,true));
-        cardList.add(new Card(1,2,1,1,1,false));
-        cardList.add(new Card(1,2,1,1,1,false));
-        cardList.add(new Card(1,1,2,1,1,false));
-        cardList.add(new Card(1,3,3,1,1,false));
-        cardList.add(new Card(1,3,1,2,1,false));
-        cardList.add(new Card(1,3,1,3,1,false));
         cardList.add(new Card(1,2,1,1,2,false));
-        cardList.add(new Card(1,2,1,1,3,false));
-        cardList.add(new Card(1,3,1,1,1,false));
-        cardList.add(new Card(1,3,1,1,1,false));
+        cardList.add(new Card(1,2,1,1,1,false));
+        cardList.add(new Card(1,1,2,1,3,false));
+        cardList.add(new Card(1,3,3,1,2,false));
+        cardList.add(new Card(1,3,1,2,3,false));
+        cardList.add(new Card(1,3,1,3,2,false));
+        cardList.add(new Card(1,2,2,1,2,false));
+        cardList.add(new Card(1,2,3,1,3,false));
+        cardList.add(new Card(1,3,2,1,1,false));
+        cardList.add(new Card(1,3,2,1,1,false));
         cardList.add(new Card(1,3,1,1,1,false));
     }
 
