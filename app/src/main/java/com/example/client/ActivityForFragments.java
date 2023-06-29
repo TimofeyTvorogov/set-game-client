@@ -28,17 +28,6 @@ public class ActivityForFragments extends AppCompatActivity {
         return binding.getRoot();
     }
 
-//    @Override
-//    public void onClick() {
-//        startFragment(RegFragment);
-//    }
-//    private void startFragment(Fragment fragment) {
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container, fragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
-
     public void onDestroyView() {
         binding = null;
     }

@@ -20,15 +20,6 @@ public class LogFragment extends Fragment {
 
     private FragmentBlankBinding binding;
     private IClickListener mClickListener;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentBlankBinding.inflate(inflater, container, false);
-        binding.btnGoReg.setOnClickListener(view -> {
-
-        });
-        return binding.getRoot();
-    }
 
     @Override
 
@@ -36,7 +27,15 @@ public class LogFragment extends Fragment {
         super.onAttach(context);
         mClickListener = (IClickListener) context;
     }
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentBlankBinding.inflate(inflater, container, false);
+        binding.btnGoReg.setOnClickListener(view -> {
+            mClickListener.onClick();
+        });
+        return binding.getRoot();
+    }
     @Override
     public void onDestroyView() {
         binding = null;
