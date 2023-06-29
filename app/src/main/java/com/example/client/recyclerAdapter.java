@@ -51,7 +51,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         return new MyViewHolder(itemView);
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull recyclerAdapter.MyViewHolder holder, int position) {
         int color = cardList.get(position).getColor();
@@ -62,9 +61,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         boolean picked = cardList.get(position).isPicked();
 
         //Todo clich effect
-        if (picked){
-            holder.card.setBackgroundColor(R.color.purple);
-        }
 
         switch (color) {
             case 1:
@@ -144,19 +140,19 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
             case 3:
                 switch (type){
                     case 1:
-                        holder.fig1.setImageResource(R.drawable.img);
-                        holder.fig2.setImageResource(R.drawable.img);
-                        holder.fig3.setImageResource(R.drawable.img);
+                        holder.fig1.setImageResource(R.drawable.triangle_empty);
+                        holder.fig2.setImageResource(R.drawable.triangle_empty);
+                        holder.fig3.setImageResource(R.drawable.triangle_empty);
                         break;
                     case 2:
-                        holder.fig1.setImageResource(R.drawable.img_1);
-                        holder.fig2.setImageResource(R.drawable.img_1);
-                        holder.fig3.setImageResource(R.drawable.img_1);
+                        holder.fig1.setImageResource(R.drawable.triangle_blured);
+                        holder.fig2.setImageResource(R.drawable.triangle_blured);
+                        holder.fig3.setImageResource(R.drawable.triangle_blured);
                         break;
                     case 3:
-                        holder.fig1.setImageResource(R.drawable.img_2);
-                        holder.fig2.setImageResource(R.drawable.img_2);
-                        holder.fig3.setImageResource(R.drawable.img_2);
+                        holder.fig1.setImageResource(R.drawable.triangle_full);
+                        holder.fig2.setImageResource(R.drawable.triangle_full);
+                        holder.fig3.setImageResource(R.drawable.triangle_full);
                         break;
                 }
                 break;
