@@ -6,4 +6,6 @@
     <string name="is_not_set">Это не сет!</string>
     <string name="add_cards">+ 3 карты</string>
     <string name="pick_card">Выбрать карты</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

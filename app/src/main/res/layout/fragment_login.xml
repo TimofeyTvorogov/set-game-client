@@ -68,7 +68,7 @@
         tools:ignore="TextSizeCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login"
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"

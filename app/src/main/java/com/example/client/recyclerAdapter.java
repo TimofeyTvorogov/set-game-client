@@ -2,9 +2,12 @@ package com.example.client;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -61,6 +64,16 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         boolean picked = cardList.get(position).isPicked();
 
         //Todo clich effect
+
+        if (picked){
+            holder.card.setScaleX((float) 1.05);
+            holder.card.setScaleY((float) 1.05);
+        }
+        else {
+            holder.card.setScaleX(1);
+            holder.card.setScaleY(1);
+        }
+
 
         switch (color) {
             case 1:
@@ -165,6 +178,8 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     public int getItemCount() {
         return cardList.size();
     }
+
+
 
     public interface RecyclerViewClickListener{
         void onClick(View view,int position);
