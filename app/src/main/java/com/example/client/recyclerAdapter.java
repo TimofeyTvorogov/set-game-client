@@ -144,19 +144,19 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
             case 3:
                 switch (type){
                     case 1:
-                        holder.fig1.setImageResource(R.drawable.circle_empty);
-                        holder.fig2.setImageResource(R.drawable.circle_empty);
-                        holder.fig3.setImageResource(R.drawable.circle_empty);
+                        holder.fig1.setImageResource(R.drawable.img);
+                        holder.fig2.setImageResource(R.drawable.img);
+                        holder.fig3.setImageResource(R.drawable.img);
                         break;
                     case 2:
-                        holder.fig1.setImageResource(R.drawable.circle_blured);
-                        holder.fig2.setImageResource(R.drawable.circle_blured);
-                        holder.fig3.setImageResource(R.drawable.circle_blured);
+                        holder.fig1.setImageResource(R.drawable.img_1);
+                        holder.fig2.setImageResource(R.drawable.img_1);
+                        holder.fig3.setImageResource(R.drawable.img_1);
                         break;
                     case 3:
-                        holder.fig1.setImageResource(R.drawable.circle_full);
-                        holder.fig2.setImageResource(R.drawable.circle_full);
-                        holder.fig3.setImageResource(R.drawable.circle_full);
+                        holder.fig1.setImageResource(R.drawable.img_2);
+                        holder.fig2.setImageResource(R.drawable.img_2);
+                        holder.fig3.setImageResource(R.drawable.img_2);
                         break;
                 }
                 break;

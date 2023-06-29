@@ -90,12 +90,12 @@ public class MainActivity extends AppCompatActivity {
         cardList.add(new Card(1,1,1,1,1,true));
         cardList.add(new Card(1,2,1,1,2,false));
         cardList.add(new Card(1,2,1,1,1,false));
-        cardList.add(new Card(1,1,2,1,3,false));
-        cardList.add(new Card(1,3,3,1,2,false));
+        cardList.add(new Card(1,1,2,3,3,false));
+        cardList.add(new Card(1,3,3,3,2,false));
         cardList.add(new Card(1,3,1,2,3,false));
         cardList.add(new Card(1,3,1,3,2,false));
         cardList.add(new Card(1,2,2,1,2,false));
-        cardList.add(new Card(1,2,3,1,3,false));
+        cardList.add(new Card(1,2,3,2,3,false));
         cardList.add(new Card(1,3,2,1,1,false));
         cardList.add(new Card(1,3,2,1,1,false));
         cardList.add(new Card(1,3,1,1,1,false));
