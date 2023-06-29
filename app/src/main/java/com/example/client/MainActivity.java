@@ -70,14 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setCardInfo() {
         cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,2,1,1,1));
+        cardList.add(new Card(1,3,1,1,1));
+        cardList.add(new Card(1,1,2,1,1));
+        cardList.add(new Card(1,1,3,1,1));
+        cardList.add(new Card(1,1,1,2,1));
+        cardList.add(new Card(1,1,1,3,1));
+        cardList.add(new Card(1,1,1,1,2));
+        cardList.add(new Card(1,1,1,1,3));
         cardList.add(new Card(1,1,1,1,1));
         cardList.add(new Card(1,1,1,1,1));
         cardList.add(new Card(1,1,1,1,1));
