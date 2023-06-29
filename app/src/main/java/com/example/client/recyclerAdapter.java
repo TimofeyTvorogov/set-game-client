@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,13 +20,15 @@ import java.util.ArrayList;
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyViewHolder>{
     private ArrayList<Card> cardList;
     private Context context;
+    private RecyclerViewClickListener clickListener;
 
-    public recyclerAdapter(ArrayList<Card> cardList, Context context){
+    public recyclerAdapter(ArrayList<Card> cardList, Context context, RecyclerViewClickListener clickListener){
         this.cardList = cardList;
         this.context = context;
+        this.clickListener = clickListener;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView fig1, fig2, fig3;
 
         public MyViewHolder(final View view){
@@ -33,6 +36,12 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
             fig1 = view.findViewById(R.id.fig1);
             fig2 = view.findViewById(R.id.fig2);
             fig3 = view.findViewById(R.id.fig3);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            clickListener.onClick(view, getAdapterPosition());
         }
     }
 
@@ -50,6 +59,12 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         int type = cardList.get(position).getFill();
         int quantity = cardList.get(position).getCount();
         int id = cardList.get(position).getId();
+        boolean picked = cardList.get(position).isPicked();
+
+        if (picked) {
+            holder.fig1.setScaleX((float) 1.5);
+            holder.fig1.setScaleY((float) 1.5);
+        }
 
         switch (color) {
             case 1:
@@ -91,5 +106,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     @Override
     public int getItemCount() {
         return cardList.size();
+    }
+
+    public interface RecyclerViewClickListener{
+        void onClick(View view,int position);
     }
 }

@@ -1,18 +1,23 @@
 package com.example.client;
 
 public class Card {
-    private int id,
-                color,
-                shape,
-                fill,
-                count;
-
-    public Card(int id, int color, int shape, int fill, int count) {
+    private int id, color, shape, fill, count;
+    private boolean picked;
+    public Card(int id, int color, int shape, int fill, int count, boolean picked) {
         this.id = id;
         this.color = color;
         this.shape = shape;
         this.fill = fill;
         this.count = count;
+        this.picked = picked;
+    }
+
+    public boolean isPicked() {
+        return picked;
+    }
+
+    public void setPicked(boolean picked) {
+        this.picked = picked;
     }
 
     public int getId() {

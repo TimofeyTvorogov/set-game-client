@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -24,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Card> cardList;
+    private recyclerAdapter.RecyclerViewClickListener clickListener;
     ActivityMainBinding binding;
     private static final String address = "http://84.201.155.174";
     private Retrofit retrofit;
@@ -51,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         cardList = new ArrayList<>();
         setCardInfo();
         setAdapter();
-
         /*btn_FrLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,26 +64,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(cardList, getApplicationContext());
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),4);
+        setOnClickListener();
+        recyclerAdapter adapter = new recyclerAdapter(cardList, getApplicationContext(),clickListener);
+        RecyclerView.LayoutManager layoutManager = new CustomGridLayoutManager(getApplicationContext(),4);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerView.setAdapter(adapter);
     }
 
+    private void setOnClickListener() {
+        clickListener = (view, position) -> {
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            VibrationEffect effect = VibrationEffect.createOneShot(25, VibrationEffect.DEFAULT_AMPLITUDE);
+            vibrator.vibrate(effect);
+            cardList.get(position).setPicked(!cardList.get(position).isPicked());
+        };
+    }
+    //TODO patterns for vibration
     private void setCardInfo() {
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,2,1,1,1));
-        cardList.add(new Card(1,2,1,1,1));
-        cardList.add(new Card(1,1,2,1,1));
-        cardList.add(new Card(1,3,3,1,1));
-        cardList.add(new Card(1,3,1,2,1));
-        cardList.add(new Card(1,3,1,3,1));
-        cardList.add(new Card(1,2,1,1,2));
-        cardList.add(new Card(1,2,1,1,3));
-        cardList.add(new Card(1,3,1,1,1));
-        cardList.add(new Card(1,3,1,1,1));
-        cardList.add(new Card(1,3,1,1,1));
+        cardList.add(new Card(1,1,1,1,1,true));
+        cardList.add(new Card(1,2,1,1,1,false));
+        cardList.add(new Card(1,2,1,1,1,false));
+        cardList.add(new Card(1,1,2,1,1,false));
+        cardList.add(new Card(1,3,3,1,1,false));
+        cardList.add(new Card(1,3,1,2,1,false));
+        cardList.add(new Card(1,3,1,3,1,false));
+        cardList.add(new Card(1,2,1,1,2,false));
+        cardList.add(new Card(1,2,1,1,3,false));
+        cardList.add(new Card(1,3,1,1,1,false));
+        cardList.add(new Card(1,3,1,1,1,false));
+        cardList.add(new Card(1,3,1,1,1,false));
     }
 
     /*private void setLogFragment() {
