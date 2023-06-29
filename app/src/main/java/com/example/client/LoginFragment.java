@@ -16,6 +16,8 @@ import android.widget.Button;
 
 import com.example.client.databinding.FragmentLoginBinding;
 
+import java.util.Objects;
+
 
 public class LoginFragment extends Fragment {
 
@@ -25,15 +27,19 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-        binding.btnGoReg.setOnClickListener(view -> {
+
+        binding.registration.setOnClickListener(view -> {
 
         });
 
         binding.login.setOnClickListener(view -> {
+            binding.loginET.getText().toString();
+            binding.passwordET.getText().toString();
             startActivity(new Intent(getContext(), MainActivity.class));
+            requireActivity().finish();
             //Todo Вот сюда Тимофей fsdkf
-        });
 
+        });
         return binding.getRoot();
     }
     @Override

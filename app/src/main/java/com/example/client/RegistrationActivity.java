@@ -1,6 +1,7 @@
 package com.example.client;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -18,10 +19,12 @@ public class RegistrationActivity extends AppCompatActivity {
         binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        LoginFragment loginFragment = new LoginFragment();
-        RegFragment regFragment = new RegFragment();
+        fragmentController(new LoginFragment());
+    }
+
+    public void fragmentController(Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_layout, loginFragment);
+        ft.replace(R.id.frame_layout, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
