@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(cardList);
+        recyclerAdapter adapter = new recyclerAdapter(cardList, getApplicationContext());
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),4);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -71,16 +71,16 @@ public class MainActivity extends AppCompatActivity {
     private void setCardInfo() {
         cardList.add(new Card(1,1,1,1,1));
         cardList.add(new Card(1,2,1,1,1));
-        cardList.add(new Card(1,3,1,1,1));
+        cardList.add(new Card(1,2,1,1,1));
         cardList.add(new Card(1,1,2,1,1));
-        cardList.add(new Card(1,1,3,1,1));
-        cardList.add(new Card(1,1,1,2,1));
-        cardList.add(new Card(1,1,1,3,1));
-        cardList.add(new Card(1,1,1,1,2));
-        cardList.add(new Card(1,1,1,1,3));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
-        cardList.add(new Card(1,1,1,1,1));
+        cardList.add(new Card(1,3,3,1,1));
+        cardList.add(new Card(1,3,1,2,1));
+        cardList.add(new Card(1,3,1,3,1));
+        cardList.add(new Card(1,2,1,1,2));
+        cardList.add(new Card(1,2,1,1,3));
+        cardList.add(new Card(1,3,1,1,1));
+        cardList.add(new Card(1,3,1,1,1));
+        cardList.add(new Card(1,3,1,1,1));
     }
 
     /*private void setLogFragment() {
