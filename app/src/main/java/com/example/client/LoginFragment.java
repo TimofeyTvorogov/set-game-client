@@ -14,26 +14,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.client.databinding.FragmentBlankBinding;
+import com.example.client.databinding.FragmentLoginBinding;
 
-public class LogFragment extends Fragment {
 
-    private FragmentBlankBinding binding;
-    private IClickListener mClickListener;
+public class LoginFragment extends Fragment {
 
-    @Override
+    private FragmentLoginBinding binding;
 
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mClickListener = (IClickListener) context;
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentBlankBinding.inflate(inflater, container, false);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
         binding.btnGoReg.setOnClickListener(view -> {
-            mClickListener.onClick();
+
         });
+
+        binding.login.setOnClickListener(view -> {
+            startActivity(new Intent(getContext(), MainActivity.class));
+            //Todo Вот сюда Тимофей
+        });
+
         return binding.getRoot();
     }
     @Override
