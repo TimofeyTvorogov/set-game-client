@@ -127,11 +127,4 @@ public class MainActivity extends AppCompatActivity {
         cardList.add(new Card(12,3,1,1,1,false));
     }
 
-    /*private void setLogFragment() {
-        LogFragment logFragment = new LogFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.constraint_layout, logFragment);
-
-    }*/
-
 }
