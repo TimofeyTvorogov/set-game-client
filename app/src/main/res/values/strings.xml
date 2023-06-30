@@ -11,4 +11,8 @@
     <string name="password">Пароль</string>
     <string name="login">Логин</string>
     <string name="account_attention">Войдите в аккаунт</string>
+    <string name="create_room">Создать комнату</string>
+    <string name="join_room">Присоединиться</string>
+    <string name="code_room">Код комнаты</string>
+    <string name="enter_room">Вход в игровую сессиею</string>
 </resources>

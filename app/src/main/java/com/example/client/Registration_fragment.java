@@ -1,6 +1,9 @@
 package com.example.client;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +13,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.client.databinding.FragmentRegistrationBinding;
 
@@ -33,7 +39,28 @@ public class Registration_fragment extends Fragment {
             intent.putExtra("Login", logIn);
             intent.putExtra("Password", password);
 
-            PreGameActivity preGameActivity = new PreGameActivity();
+            Dialog dialog=new Dialog(getContext());
+            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+            dialog.getWindow().setAttributes(lp);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(R.layout.dialog_add_room);
+
+            EditText editText = dialog.findViewById(R.id.codeRoom);
+            Button button = dialog.findViewById(R.id.joinBtn);
+
+            button.setOnClickListener(view1 -> {
+                if (editText.getText().toString().trim().isEmpty()){
+                    //create room
+                }
+                else {
+                    //join room
+                }
+                startActivity(intent);
+            });
+
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            dialog.show();
+
         });
 
         return binding.getRoot();
