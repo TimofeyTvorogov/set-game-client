@@ -20,7 +20,8 @@ import android.widget.EditText;
 import com.example.client.databinding.FragmentRegistrationBinding;
 
 public class Registration_fragment extends Fragment {
-
+    String toMActToken;
+    int toMActId;
     private FragmentRegistrationBinding binding;
 
     @Override
@@ -35,10 +36,11 @@ public class Registration_fragment extends Fragment {
         binding.login.setOnClickListener(view -> {
             String logIn = binding.loginET.getText().toString();
             String password = binding.passwordET.getText().toString();
+            WebClass webclass = new WebClass(null);
+            toMActToken = webclass.register(new RegUser(logIn,password));
             Intent intent = new Intent(getContext(), MainActivity.class);
+            intent.putExtra("Token", toMActToken);
             intent.putExtra("Login", logIn);
-            intent.putExtra("Password", password);
-
             Dialog dialog=new Dialog(getContext());
             WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
             dialog.getWindow().setAttributes(lp);
@@ -50,10 +52,12 @@ public class Registration_fragment extends Fragment {
 
             button.setOnClickListener(view1 -> {
                 if (editText.getText().toString().trim().isEmpty()){
-                    //create room
+                    toMActId = webclass.createRoom(toMActToken);
+
+                    intent.putExtra("GameId",toMActId);
                 }
                 else {
-                    //join room
+                    webclass.enterRoom(new EntRoom(toMActToken,toMActId));
                 }
                 startActivity(intent);
             });
@@ -80,3 +84,4 @@ public class Registration_fragment extends Fragment {
     };
 
 }
+
