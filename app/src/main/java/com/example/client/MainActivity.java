@@ -87,15 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
             if (picked_cards.size()==3){
                 int [] set = new int[3];
-                for (int i = 0; i < 3; i++) {
-                    set[i] = Integer.parseInt(picked_cards.get(i)) ;
-                }
+                for (int i = 0; i < 3; i++) { set[i] = Integer.parseInt(picked_cards.get(i)) ;}
+
                 try {
                     Thread.sleep(300);
                 } catch (InterruptedException ignored) {}
+
+                picked_cards.clear();
                 for (int i = 0; i < 12; i++) {
                     cardList.get(i).setPicked(false);
-                    picked_cards.clear();
                 }
                 pickSet(new CheckSetData(token,set));
             }
