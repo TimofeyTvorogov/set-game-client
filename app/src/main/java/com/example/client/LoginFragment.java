@@ -33,11 +33,14 @@ public class LoginFragment extends Fragment {
         });
 
         binding.login.setOnClickListener(view -> {
-            binding.loginET.getText().toString();
-            binding.passwordET.getText().toString();
-            startActivity(new Intent(getContext(), MainActivity.class));
-            requireActivity().finish();
-            //Todo Вот сюда Тимофей fsdkf
+             String logIn = binding.loginET.getText().toString();
+             String password = binding.passwordET.getText().toString();
+             Intent intent = new Intent(getContext(), MainActivity.class);
+             intent.putExtra("Login", logIn);
+             intent.putExtra("Password", password);
+             startActivity(intent);
+             requireActivity().finish();
+             //Todo Вот сюда Тимофей fsdkf
 
         });
         return binding.getRoot();

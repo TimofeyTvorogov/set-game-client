@@ -8,7 +8,7 @@
     tools:context=".RegFragment">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowColor="@color/black"
@@ -17,14 +17,13 @@
         android:shadowRadius="5"
         android:text="Войдите в аккаунт"
         android:textColor="@color/black"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.315" />
+        android:layout_marginBottom="500dp" />
 
     <EditText
         android:id="@+id/loginET"
@@ -38,7 +37,7 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/label" />
 
     <EditText
         android:id="@+id/passwordET"
@@ -71,7 +70,7 @@
         android:id="@+id/login"
         android:layout_width="110dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="-5dp"
         android:backgroundTint="#CEA7FF"
         android:shadowColor="@color/white"
         android:shadowDx="2"
@@ -80,11 +79,9 @@
         android:text="@string/log_in"
         android:textSize="16sp"
         app:cornerRadius="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/passwordET"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintTop_toBottomOf="@+id/registration"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

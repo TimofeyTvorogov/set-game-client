@@ -63,16 +63,18 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         int id = cardList.get(position).getId();
         boolean picked = cardList.get(position).isPicked();
 
-        //Todo clich effect
 
-        if (picked){
-            holder.card.setScaleX((float) 1.05);
-            holder.card.setScaleY((float) 1.05);
-        }
-        else {
-            holder.card.setScaleX(1);
-            holder.card.setScaleY(1);
-        }
+        new Thread(()-> {
+            if (picked) {
+                holder.card.setScaleX((float) 1.05);
+                holder.card.setScaleY((float) 1.05);
+                holder.card.setBackgroundResource(R.drawable.card_selected_background);
+            } else {
+                holder.card.setScaleX(1);
+                holder.card.setScaleY(1);
+                holder.card.setBackgroundResource(R.drawable.card_background);
+            }
+        }).start();
 
 
         switch (color) {
