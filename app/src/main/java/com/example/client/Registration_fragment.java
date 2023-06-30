@@ -57,7 +57,9 @@ public class Registration_fragment extends Fragment {
                     intent.putExtra("GameId",toMActId);
                 }
                 else {
+                    toMActId = Integer.valueOf(editText.getText().toString());
                     webclass.enterRoom(new EntRoom(toMActToken,toMActId));
+                    intent.putExtra("GameId",toMActId);
                 }
                 startActivity(intent);
             });
