@@ -3,9 +3,9 @@ package com.example.client;
 
 public class ServResponse {
     private boolean success;
-    private Expn expn;
-    private String nick;
-    private String token;
+    private Expn exception;
+    private String nickname;
+    private String accesstoken;
 
 
     protected class Expn {
@@ -28,29 +28,29 @@ public class ServResponse {
         this.success = success;
     }
 
-    public Expn getExpn() {
-        return expn;
+    public Expn getException() {
+        return exception;
     }
 
-    public void setExpn(Expn expn) {
-        this.expn = expn;
+    public void setException(Expn exception) {
+        this.exception = exception;
     }
 
 
-    public String getNick() {
-        return nick;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getToken() {
-        return token;
+    public String getAccesstoken() {
+        return accesstoken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAccesstoken(String accesstoken) {
+        this.accesstoken = accesstoken;
     }
 }
 
