@@ -2,7 +2,7 @@ package com.example.client;
 
 import java.util.ArrayList;
 
-public class FetchDeck {
+public class FetchDeck extends ServResponse {
     private ArrayList<Card> cards;
     private String status;
     private int score;

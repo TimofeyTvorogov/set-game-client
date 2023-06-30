@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 
 
 import com.example.client.databinding.ActivityMainBinding;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> picked_cards;
     private recyclerAdapter.RecyclerViewClickListener clickListener;
     ActivityMainBinding binding;
-    private static final String address = "http://84.201.155.174";
+    private static final String address = "http://51.250.45.188:8080/";
     private Retrofit retrofit;
     private Api api;
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
             if (extras != null) {
                 String login = extras.getString("Login");
                 String password = extras.getString("Password");
-                register("Obama","12345");
+                register(new RegUser("Adolf","23456"));
 
             }
         }
         createRoom(token);
-        enterRoom(token,gameId);
+        enterRoom(new EntRoom(token,gameId));
         setCardInfo(token);
         picked_cards = new ArrayList<>();
         setOnClickListener();
@@ -96,16 +97,16 @@ public class MainActivity extends AppCompatActivity {
                     cardList.get(i).setPicked(false);
                     picked_cards.clear();
                 }
-                pickSet(token,set);
+                pickSet(new CheckSetData(token,set));
             }
             adapter.notifyDataSetChanged();
             //Todo latency before clearing
         };
     }
-
-    private boolean pickSet(String token, int[] cardIDs) {
+//todo пересмотреть функцию
+    private boolean pickSet(CheckSetData checkSetData) {
         final boolean[] isSet = new boolean[1];
-        Call<Pick> isSetCall = api.pickCards(token,cardIDs);
+        Call<Pick> isSetCall = api.pickCards(checkSetData);
         isSetCall.enqueue(new Callback<Pick>() {
             @Override
             public void onResponse(Call<Pick> call, Response<Pick> response) {
@@ -116,14 +117,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Pick> call, Throwable t) {
-
+                Log.d("pickSet",t.getMessage());
             }
         });
         return isSet[0];
     }
-    private void enterRoom(String token, int gameId){
+    private void enterRoom(EntRoom entRoom){
 
-        Call<EnterCreate> enterCall = api.enterRoom(token,gameId);
+        Call<EnterCreate> enterCall = api.enterRoom(entRoom);
         enterCall.enqueue(new Callback<EnterCreate>() {
             @Override
             public void onResponse(Call<EnterCreate> call, Response<EnterCreate> response) {
@@ -151,18 +152,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void register(String nick, String pass) {
-        Call<UserData> userDataCall = api.registerUser(nick, pass);
-        userDataCall.enqueue(new Callback<UserData>() {
+    private void register(RegUser regUser) {
+        Call<ServResponse> userDataCall = api.registerUser(regUser);
+        userDataCall.enqueue(new Callback<ServResponse>() {
             @Override
-            public void onResponse(Call<UserData> call, Response<UserData> response) {
-                UserData data = response.body();
+            public void onResponse(Call<ServResponse> call, Response<ServResponse> response) {
+                ServResponse data = response.body();
                 token = data.getToken();
 
             }
 
             @Override
-            public void onFailure(Call<UserData> call, Throwable t) {
+            public void onFailure(Call<ServResponse> call, Throwable t) {
 
             }
         });

@@ -1,6 +1,6 @@
 package com.example.client;
 
-public class Pick {
+public class Pick extends ServResponse {
     private boolean isSet;
     private int score;
 
