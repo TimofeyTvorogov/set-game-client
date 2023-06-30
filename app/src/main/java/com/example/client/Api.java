@@ -12,7 +12,7 @@ public interface Api {
     Call<FetchDeck> getDeck(@Query("accessToken") String token);
 
     @GET("/set/pick")
-    Call<Pick> pickCards(@Query("accessToken") String token, @Query("cards") ArrayList<Integer> cards);
+    Call<Pick> pickCards(@Query("accessToken") String token, @Query("cards") int[] cards);
 //мб всё таки int[] cards
 
     @GET("/set/scores")
@@ -31,5 +31,6 @@ public interface Api {
 
     @GET("/set/add")
     Call<ServResponse> addCards(@Query("accessToken") String token);
+
 
 }

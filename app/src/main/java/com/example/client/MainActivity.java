@@ -25,10 +25,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+    private String token;
     private ArrayList<Card> cardList;
     private CountDownTimer countDownTimer;
     private recyclerAdapter adapter;
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             if (extras != null) {
                 String login = extras.getString("Login");
                 String password = extras.getString("Password");
+
             }
         }
 
@@ -105,6 +111,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void is_set(int[] set) {
         //Todo проверяем сет или нет
+    }
+    private void register(String nick, String pass) {
+        Call<UserData> userDataCall = api.registerUser(nick, pass);
+        userDataCall.enqueue(new Callback<UserData>() {
+            @Override
+            public void onResponse(Call<UserData> call, Response<UserData> response) {
+                UserData data = response.body();
+                token = data.getToken();
+
+            }
+
+            @Override
+            public void onFailure(Call<UserData> call, Throwable t) {
+
+            }
+        });
     }
 
     //TODO patterns for vibration
