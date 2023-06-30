@@ -15,25 +15,13 @@ public class Scores extends ServResponse {
             return nick;
         }
 
-        public void setNick(String nick) {
-            this.nick = nick;
-        }
-
         public int getScore() {
             return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
         }
     }
 
     public ArrayList<User> getUsers() {
         return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
     }
 
 }
