@@ -1,12 +1,9 @@
 package com.example.client;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.fragment.app.FragmentTransaction;
+
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -15,17 +12,13 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
+
 
 import com.example.client.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import okhttp3.ResponseBody;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private String token;
+    private int gameId;
     private ArrayList<Card> cardList;
     private CountDownTimer countDownTimer;
     private recyclerAdapter adapter;
@@ -59,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
             if (extras != null) {
                 String login = extras.getString("Login");
                 String password = extras.getString("Password");
+                register("Obama","12345");
 
             }
         }
-
-
-        cardList = new ArrayList<>();
+        createRoom(token);
+        enterRoom(token,gameId);
+        setCardInfo(token);
         picked_cards = new ArrayList<>();
-        setCardInfo();
         setOnClickListener();
         adapter = new recyclerAdapter(cardList, getApplicationContext(),clickListener);
         RecyclerView.LayoutManager layoutManager = new CustomGridLayoutManager(getApplicationContext(),4);
@@ -102,15 +96,60 @@ public class MainActivity extends AppCompatActivity {
                     cardList.get(i).setPicked(false);
                     picked_cards.clear();
                 }
-                is_set(set);
+                pickSet(token,set);
             }
             adapter.notifyDataSetChanged();
             //Todo latency before clearing
         };
     }
 
-    private void is_set(int[] set) {
-        //Todo проверяем сет или нет
+    private boolean pickSet(String token, int[] cardIDs) {
+        final boolean[] isSet = new boolean[1];
+        Call<Pick> isSetCall = api.pickCards(token,cardIDs);
+        isSetCall.enqueue(new Callback<Pick>() {
+            @Override
+            public void onResponse(Call<Pick> call, Response<Pick> response) {
+                Pick pick = response.body();
+                isSet[0] = pick.isSet();
+                //todo обновление счётчиков очков
+            }
+
+            @Override
+            public void onFailure(Call<Pick> call, Throwable t) {
+
+            }
+        });
+        return isSet[0];
+    }
+    private void enterRoom(String token, int gameId){
+
+        Call<EnterCreate> enterCall = api.enterRoom(token,gameId);
+        enterCall.enqueue(new Callback<EnterCreate>() {
+            @Override
+            public void onResponse(Call<EnterCreate> call, Response<EnterCreate> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<EnterCreate> call, Throwable t) {
+
+            }
+        });
+    }
+    private void createRoom(String token){
+
+        Call<EnterCreate> enterCall = api.createRoom(token);
+        enterCall.enqueue(new Callback<EnterCreate>() {
+            @Override
+            public void onResponse(Call<EnterCreate> call, Response<EnterCreate> response) {
+                gameId = response.body().getGameId();
+            }
+
+            @Override
+            public void onFailure(Call<EnterCreate> call, Throwable t) {
+
+            }
+        });
     }
     private void register(String nick, String pass) {
         Call<UserData> userDataCall = api.registerUser(nick, pass);
@@ -128,21 +167,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     //TODO patterns for vibration
-    private void setCardInfo() {
-        cardList.add(new Card(1,1,1,1,1,false));
-        cardList.add(new Card(2,2,1,1,2,false));
-        cardList.add(new Card(3,2,1,1,1,false));
-        cardList.add(new Card(4,1,2,3,3,false));
-        cardList.add(new Card(5,3,3,3,2,false));
-        cardList.add(new Card(6,3,1,2,3,false));
-        cardList.add(new Card(7,3,1,3,2,false));
-        cardList.add(new Card(8,2,2,1,2,false));
-        cardList.add(new Card(9,2,3,2,3,false));
-        cardList.add(new Card(10,3,2,1,1,false));
-        cardList.add(new Card(11,3,2,1,1,false));
-        cardList.add(new Card(12,3,1,1,1,false));
+    private void setCardInfo(String token) {
+        Call<FetchDeck> fetchDeckCall = api.getDeck(token);
+        fetchDeckCall.enqueue(new Callback<FetchDeck>() {
+            @Override
+            public void onResponse(Call<FetchDeck> call, Response<FetchDeck> response) {
+                FetchDeck fetchDeck = response.body();
+                cardList = fetchDeck.getCards();
+                for (Card card:cardList) {
+                    card.setPicked(false);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<FetchDeck> call, Throwable t) {
+
+            }
+        });
     }
 
 }
