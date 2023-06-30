@@ -7,9 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#7C7777</color>
     
     //Color for patterns
     <color name="purple">#6235B1</color>
     <color name="red">#BF3438</color>
     <color name="green">#448C56</color>
+
+    //Reg colors
+    <color name="enabled">#CEA7FF</color>
 </resources>

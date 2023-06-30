@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 
 import com.example.client.databinding.ActivityRegistrationBinding;
 
@@ -19,13 +22,38 @@ public class RegistrationActivity extends AppCompatActivity {
         binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        fragmentController(new LoginFragment());
+        binding.loginET.addTextChangedListener(loginTextWatcher);
+        binding.passwordET.addTextChangedListener(loginTextWatcher);
+
+        binding.login.setOnClickListener(view -> {
+            String logIn = binding.loginET.getText().toString();
+            String password = binding.passwordET.getText().toString();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("Login", logIn);
+            intent.putExtra("Password", password);
+            startActivity(intent);
+            finish();
+        });
     }
 
-    public void fragmentController(Fragment fragment){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_layout, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+    private TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String login = binding.loginET.getText().toString().trim();
+            String password = binding.passwordET.getText().toString().trim();
+
+            binding.login.setEnabled(!login.isEmpty() && !password.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
 }
