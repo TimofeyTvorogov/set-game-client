@@ -78,18 +78,22 @@ public class WebClass {
     }
     public String register(RegUser regUser) {
         final String[] returnToken = new String[1];
-        Call<ServResponse> userDataCall = api.registerUser(regUser);
-        userDataCall.enqueue(new Callback<ServResponse>() {
+        Call<UserData> userDataCall = api.registerUser(regUser);
+        userDataCall.enqueue(new Callback<UserData>() {
             @Override
-            public void onResponse(Call<ServResponse> call, Response<ServResponse> response) {
-                ServResponse data = response.body();
-                returnToken[0] = data.getToken();
+            public void onResponse(Call<UserData> call, Response<UserData> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("registerSucc", response.message());
+                    return;
+                }
+                UserData data = response.body();
+                returnToken[0] = data.getAccesstoken();
 
             }
 
             @Override
-            public void onFailure(Call<ServResponse> call, Throwable t) {
-
+            public void onFailure(Call<UserData> call, Throwable t) {
+                Log.d("registerFail", t.getMessage());
             }
         });
         return returnToken[0];
@@ -100,6 +104,10 @@ public class WebClass {
         fetchDeckCall.enqueue(new Callback<FetchDeck>() {
             @Override
             public void onResponse(Call<FetchDeck> call, Response<FetchDeck> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("setcard", response.message());
+                    return;
+                }
                 FetchDeck fetchDeck = response.body();
                 mainActivity.setCardList(fetchDeck.getCards());
                 for (Card card:mainActivity.getCardList()) {
@@ -110,7 +118,7 @@ public class WebClass {
 
             @Override
             public void onFailure(Call<FetchDeck> call, Throwable t) {
-
+                Log.d("setcardFail", t.getMessage());
             }
         });
     }

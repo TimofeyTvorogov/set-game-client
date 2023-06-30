@@ -22,7 +22,7 @@ public interface Api {
 
     //maybe post
     @POST("/user/register")
-    Call<ServResponse> registerUser(@Body RegUser regUser);
+    Call<UserData> registerUser(@Body RegUser regUser);
 
     @POST("/set/room/enter")
     Call<EnterCreate> enterRoom(@Body EntRoom roomData);
